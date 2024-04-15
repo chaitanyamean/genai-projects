@@ -26,6 +26,8 @@ df.head()
 
 question = df['question'].iloc[0]
 
+opts = df['options'].iloc[0]
+
 question1 = df['question'].iloc[1]
 
 options1 = df['options'].iloc[1]
@@ -47,7 +49,7 @@ def getkeysandvalues(question, options):
 secondQuestions = getkeysandvalues(question1, options1)
 second_answer = "A"
 
-firstQuestion = getkeysandvalues()
+firstQuestion = getkeysandvalues(question,opts)
 
 print(firstQuestion)
 
@@ -59,7 +61,7 @@ system_role = "You are a helpful assistant that answers multiple choice question
 
 import openai
 
-openai.api_key=""
+openai.api_key="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"
 
 def get_response(messages,model="gpt-3.5-turbo"):
   response = openai.ChatCompletion.create(
@@ -80,3 +82,12 @@ messages=[{'role':'system','content':system_role},
           ]
 
 print(get_response(messages))
+
+def get_response_four(messages,model="gpt-4-turbo"):
+  response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages
+     )
+  return response.choices[0].message["content"]
+
+# print(get_response_four(messages))
