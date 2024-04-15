@@ -61,7 +61,7 @@ system_role = "You are a helpful assistant that answers multiple choice question
 
 import openai
 
-openai.api_key="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"
+openai.api_key=""
 
 def get_response(messages,model="gpt-3.5-turbo"):
   response = openai.ChatCompletion.create(
